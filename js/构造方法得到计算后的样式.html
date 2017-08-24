@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            padding: 10px 20px 30px;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+</body>
+<script>
+       var oDiv=document.getElementsByTagName("div")[0];
+       alert(fetchComputedStyle(oDiv,"padding-top"));
+       alert(fetchComputedStyle(oDiv,"paddingLeft"));
+          function fetchComputedStyle(object,attr){
+              if(window.getComputedStyle){
+                  attr=attr.replace(/[A-Z]/g,function(match){
+                        return "-"+match.toLowerCase();
+
+                  }) ;
+                   return window.getComputedStyle(object)[attr];
+                   //中括号里的属性可以是变量
+            }else{
+                 attr=attr.replace(/-([a-z])/,function (match,$1) {
+                       return $1.toUpperCase();
+                 })
+                   return object.currentStyle[attr];
+            }
+
+     }
+
+
+</script>
+</html>
